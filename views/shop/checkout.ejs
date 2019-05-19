@@ -1,0 +1,83 @@
+<%- include ../partials/head %>
+<%- include ../partials/header %>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 offset-md-4 offset-sm-3">
+        <h1>Checkout</h1>
+        <h4>Your Total: <%= total %></h4>
+
+        <% if(errMsg){ %>
+        <div id="charge-error" class="alert alert-danger">
+        <% } else { %>
+        <div id="charge-error" class="alert alert-danger hidden">
+        <% } %>
+            <%= errMsg %>
+        </div>
+        <form action="/checkout" method="post" id="checkout-form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input name="name" type="text" id="name" class="form-control" required
+                        name="name">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input name="address" type="text" id="address" class="form-control" required
+                        name="address">
+                    </div>
+                </div>
+                <hr>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="card-name">Card Holder Name</label>
+                        <input name="card-name" type="text" id="card-name" class="form-control"
+                        required>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="card-number">Credit Card Number</label>
+                        <input nmae="card-number" type="text" id="card-number" class="form-control"
+                        required>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="card-expiry-month">Expiration Month</label>
+                                <input name="card-expiry-month" type="text" id="card-expiry-month" class="form-control"
+                                required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="card-expiry-year">Expiration Year</label>
+                                <input name="card-expiry-year" type="text" id="card-expiry-year" class="form-control"
+                                required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="card-cvc">CVC</label>
+                        <input name="card-cvc" type="text" id="card-cvc" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Buy now</button>
+        </form>
+    </div>
+</div>
+
+<%- include ../partials/footer %>
+
+<!-- Stripe SDK -->
+<script src="https://js.stripe.com/v2"></script>
+<script src="/scripts/checkout.js"></script>
+
+<%- include ../partials/end %>

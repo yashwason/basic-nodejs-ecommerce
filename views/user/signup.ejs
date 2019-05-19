@@ -1,0 +1,29 @@
+<%- include ../partials/head %>
+
+<%- include ../partials/header %>
+
+<h1>Register New Account</h1>
+
+<% if(messages.length > 0){ %>
+<% messages.forEach((message) => { %>
+<div class="alert alert-danger"><%= message %></div>
+<% }); %>
+<% } %>
+
+<form action="/user/signup" method="POST">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+
+<%- include ../partials/footer %>
+
+<%- include ../partials/end %>

@@ -1,0 +1,33 @@
+<%- include ../partials/head %>
+
+<%- include ../partials/header %>
+
+<div class="row">
+    <div class="col-md-6 col-lg-4 offset-md-4 offset-sm-3">
+        <% if(successMsg){ %>
+        <div class="alert alert-success">
+        <% } else { %>
+        <div class="alert alert-success hidden">
+        <% } %>
+            <%= successMsg %>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <% products.forEach((product, i) => { %>
+    <div class="card col-4">
+        <img src="<%= product.imagePath %>" class="card-img-top" alt="<%= product.title %> Thumbnail">
+        <div class="card-body">
+            <h5 class="card-title"><%= product.title %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <p class="float-left price">$<%= product.price %></p>
+            <a href="/add-to-cart/<%=product._id%>" class="btn btn-info float-right">Add to Cart</a>
+        </div>
+    </div>
+    <%}); %>
+</div>
+
+<%- include ../partials/footer %>
+
+<%- include ../partials/end %>
